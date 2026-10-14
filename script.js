@@ -1,3 +1,4 @@
+const SUPABASE_URL = 'https://wnfuujvwtaigwcalartx.supabase.co';
 let schedules =
     JSON.parse(localStorage.getItem("studentSchedules")) || [];
 

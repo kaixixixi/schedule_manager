@@ -1,3 +1,7 @@
+const SUPABASE_URL = 'https://kqiihcjmwaqkuttuqjj.supabase.co'[cite: 1, 3]
+const SUPABASE_ANON_KEY = 'sb_publishable_C24NFWvNKcq0qEVUbvazg_PsJL1...'
+
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
 const supabaseUrl = 'https://kqiihcjmwaqkuttuqjj.supabase.co'

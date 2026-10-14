@@ -1,8 +1,3 @@
-const SUPABASE_URL = 'https://kqiihcjmwaqkuttuqjj.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_C24NFWvNKcq0qEVUbvazg_PsJL1...';
-
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
 let schedules =
     JSON.parse(localStorage.getItem("studentSchedules")) || [];
 

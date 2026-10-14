@@ -1,3 +1,8 @@
+const SUPABASE_URL = 'https://kqiihcjmwaqkuttuqjj.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_C24NFWvNKcq0qEVUbvazg_PsJL1...';
+
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
 let schedules =
     JSON.parse(localStorage.getItem("studentSchedules")) || [];
 
@@ -201,6 +206,29 @@ scheduleForm.addEventListener("submit", function(event) {
                 endTime.value
 
         };
+    supabase
+            .from('schedules')
+            .insert([
+                {
+                    title: newSchedule.subjectName,
+                    description: `${newSchedule.subjectCode} - ${newSchedule.instructor} (${newSchedule.room}) - ${newSchedule.day}`,
+                    start_time: newSchedule.startTime,
+                    end_time: newSchedule.endTime
+                }
+            ])
+            .then(({ error }) => {
+                if (error) {
+                    console.error('Supabase Error:', error.message);
+                } else {
+                    console.log('Saved to Supabase successfully!');
+                }
+            });
+
+        schedules.push(newSchedule);
+
+        alert("Class schedule added successfully.");
+
+    }
 
         schedules.push(newSchedule);
 

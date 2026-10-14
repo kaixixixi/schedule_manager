@@ -1,8 +1,3 @@
-const SUPABASE_URL = 'https://kqiihcjmwaqkuttuqjj.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_C24NFWvNKcq0qEVUbvazg_PsJL1...'; 
-
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
 let schedules =
     JSON.parse(localStorage.getItem("studentSchedules")) || [];
 
@@ -63,8 +58,9 @@ const cancelBtn =
     document.getElementById("cancelBtn");
 
 
+/* Add or Update Class */
 
-scheduleForm.addEventListener("submit", async function(event) {
+scheduleForm.addEventListener("submit", function(event) {
 
     event.preventDefault();
 
@@ -91,6 +87,7 @@ scheduleForm.addEventListener("submit", async function(event) {
     }
 
 
+    /* Check Schedule Conflict */
 
     const conflict = schedules.some(schedule => {
 
@@ -122,7 +119,8 @@ scheduleForm.addEventListener("submit", async function(event) {
     }
 
 
- 
+    /* Update */
+
     if (editId !== null) {
 
         const index =
@@ -170,7 +168,7 @@ scheduleForm.addEventListener("submit", async function(event) {
 
     }
 
-
+    /* Add */
 
     else {
 
@@ -204,25 +202,6 @@ scheduleForm.addEventListener("submit", async function(event) {
 
         };
 
-        const { error } = await supabase
-            .from('schedules')
-            .insert([
-                {
-                    subject_code: newSchedule.subjectCode,
-                    subject_name: newSchedule.subjectName,
-                    instructor: newSchedule.instructor,
-                    room: newSchedule.room,
-                    day: newSchedule.day,
-                    class_type: newSchedule.classType,
-                    start_time: newSchedule.startTime,
-                    end_time: newSchedule.endTime
-                }
-            ]);
-
-        if (error) {
-            console.error('Supabase Error:', error.message);
-        }
-
         schedules.push(newSchedule);
 
         alert("Class schedule added successfully.");
@@ -239,6 +218,7 @@ scheduleForm.addEventListener("submit", async function(event) {
 });
 
 
+/* Display */
 
 function displaySchedules() {
 
@@ -277,6 +257,7 @@ function displaySchedules() {
         });
 
 
+    /* Sort by Day and Time */
 
     const dayOrder = {
 
@@ -414,6 +395,7 @@ function displaySchedules() {
 }
 
 
+/* Edit */
 
 function editSchedule(id) {
 
@@ -473,6 +455,7 @@ function editSchedule(id) {
 }
 
 
+/* Cancel Edit */
 
 function cancelEdit() {
 
@@ -488,6 +471,7 @@ function cancelEdit() {
 }
 
 
+/* Delete */
 
 function deleteSchedule(id) {
 
@@ -527,6 +511,7 @@ function deleteSchedule(id) {
 }
 
 
+/* Save */
 
 function saveSchedules() {
 
@@ -541,7 +526,7 @@ function saveSchedules() {
 }
 
 
-
+/* Format Time */
 
 function formatTime(time) {
 
@@ -567,6 +552,7 @@ function formatTime(time) {
 }
 
 
+/* Protect Display */
 
 function escapeHTML(text) {
 
@@ -585,7 +571,7 @@ function escapeHTML(text) {
 }
 
 
-
+/* Student Information */
 
 function updateStudentDisplay() {
 
@@ -646,7 +632,7 @@ search.addEventListener(
 );
 
 
-
+/* Filter */
 
 filterDay.addEventListener(
     "change",
@@ -654,6 +640,7 @@ filterDay.addEventListener(
 );
 
 
+/* Initial Display */
 
 displaySchedules();
 updateStudentDisplay();

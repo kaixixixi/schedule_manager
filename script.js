@@ -1,3 +1,10 @@
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+const supabaseUrl = 'https://kqiihcjmwaqkuttuqjj.supabase.co'
+const supabaseAnonKey = 'sb_publishable_C24NFWvNKcq0qEVUbvazg_PsJL1...' 
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+
 let schedules =
     JSON.parse(localStorage.getItem("studentSchedules")) || [];
 
